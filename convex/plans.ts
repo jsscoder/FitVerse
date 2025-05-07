@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
+// Mutation to create a new plan for the user
 export const createPlan = mutation({
   args: {
     userId: v.string(),
@@ -32,28 +33,44 @@ export const createPlan = mutation({
     isActive: v.boolean(),
   },
   handler: async (ctx, args) => {
+    // Ensure the userId is valid
+    if (!args.userId) {
+      throw new Error("User ID is required");
+    }
+
+    // Query for active plans of the user
     const activePlans = await ctx.db
       .query("plans")
-      .withIndex("by_user_id", (q) => q.eq("userId", args.userId))
+      .withIndex("by_user_id", (q) => q.eq("userId", args.userId))  // Ensure this index exists in your schema
       .filter((q) => q.eq(q.field("isActive"), true))
       .collect();
 
+    // Deactivate existing active plans
     for (const plan of activePlans) {
       await ctx.db.patch(plan._id, { isActive: false });
     }
 
+    // Insert the new plan
     const planId = await ctx.db.insert("plans", args);
 
+    // Return the ID of the newly created plan
     return planId;
   },
 });
 
+// Query to get all plans for a user
 export const getUserPlans = query({
   args: { userId: v.string() },
   handler: async (ctx, args) => {
+    // Ensure the userId is valid
+    if (!args.userId) {
+      throw new Error("User ID is required");
+    }
+
+    // Query plans by userId and order them in descending order
     const plans = await ctx.db
       .query("plans")
-      .withIndex("by_user_id", (q) => q.eq("userId", args.userId))
+      .withIndex("by_user_id", (q) => q.eq("userId", args.userId))  // Ensure this index exists in your schema
       .order("desc")
       .collect();
 

@@ -16,11 +16,11 @@ const Footer = () => {
                 <ZapIcon className="w-4 h-4 text-primary" />
               </div>
               <span className="text-xl font-bold font-mono">
-                code<span className="text-primary">flex</span>.ai
+                Fit<span className="text-primary">Verse</span>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} codeflex.ai - All rights reserved
+              &copy; {new Date().getFullYear()} FitVerse - All rights reserved
             </p>
           </div>
 
@@ -66,7 +66,7 @@ const Footer = () => {
 
           {/* Status */}
           <div className="flex items-center gap-2 px-3 py-2 border border-border rounded-md bg-background/50">
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-status-pulse"></div>
             <span className="text-xs font-mono">SYSTEM OPERATIONAL</span>
           </div>
         </div>

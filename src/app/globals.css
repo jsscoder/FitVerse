@@ -236,3 +236,131 @@
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+/* Hero Section Animations */
+@keyframes hero-slide-up-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-separator-animate {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hero-stat-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-cta-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary_hover, var(--primary)); /* Fallback for primary_hover */
+  }
+  50% {
+    box-shadow: 0 0 15px var(--primary), 0 0 25px var(--primary_hover, var(--primary));
+  }
+}
+
+.hero-title-line {
+  opacity: 0;
+  animation: hero-slide-up-fade-in 0.6s ease-out forwards;
+}
+
+.hero-title-line-1 { animation-delay: 0.2s; }
+.hero-title-line-2 { animation-delay: 0.4s; }
+.hero-title-line-3 { animation-delay: 0.6s; }
+.hero-title-line-4 { animation-delay: 0.8s; }
+
+.hero-subtitle-animate {
+  opacity: 0;
+  animation: hero-slide-up-fade-in 0.6s ease-out forwards;
+  animation-delay: 1s; 
+}
+
+.hero-separator-animate {
+  background-size: 200% 100%;
+  animation: hero-separator-animate 3s linear infinite;
+  animation-delay: 1.2s; /* Delay to start after title */
+}
+
+.hero-stats-container .hero-stat-item {
+  opacity: 0;
+  animation: hero-slide-up-fade-in 0.5s ease-out forwards;
+}
+
+.hero-stats-container .hero-stat-item:nth-child(1) { animation-delay: 1.4s; }
+.hero-stats-container .hero-stat-item:nth-child(3) { animation-delay: 1.6s; } /* Skips the separator div */
+.hero-stats-container .hero-stat-item:nth-child(5) { animation-delay: 1.8s; } /* Skips the separator div */
+
+.hero-stat-number {
+  /* Optional: if you want numbers to pulse after appearing */
+  /* animation: hero-stat-pulse 2s infinite ease-in-out; */
+  /* animation-delay: 2s; */ /* Start pulsing after initial animation */
+}
+
+.hero-cta-container {
+  opacity: 0;
+  animation: hero-slide-up-fade-in 0.6s ease-out forwards;
+  animation-delay: 2s;
+}
+
+.hero-cta-button.hero-cta-animate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--primary), 0 0 25px var(--cyber-blue-glow, var(--primary)); /* Use existing glow color or fallback */
+  transition: transform 0.2s ease-out, box-shadow 0.3s ease-in-out;
+}
+
+.hero-cta-button.hero-cta-animate:active {
+  transform: translateY(0px);
+  box-shadow: 0 0 5px var(--primary), 0 0 10px var(--cyber-blue-glow, var(--primary));
+}
+
+.hero-image-container-animate {
+  opacity: 0;
+  animation: hero-fade-in 0.8s ease-out forwards;
+  animation-delay: 0.5s; /* Image fades in alongside title */
+}
+
+.hero-corner-decoration {
+    border-color: var(--cyber-line-color); /* Use your existing variable */
+    opacity: 0;
+    animation: hero-fade-in 0.8s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.hero-image-corner {
+    border-color: var(--border); /* Use existing border variable */
+    opacity: 0;
+    animation: hero-fade-in 0.5s ease-out forwards;
+}
+
+.hero-image-container-animate .hero-image-corner:nth-of-type(1) { animation-delay: 0.7s; }
+.hero-image-container-animate .hero-image-corner:nth-of-type(2) { animation-delay: 0.9s; }
+.hero-image-container-animate .hero-image-corner:nth-of-type(3) { animation-delay: 1.1s; }
+.hero-image-container-animate .hero-image-corner:nth-of-type(4) { animation-delay: 1.3s; }
